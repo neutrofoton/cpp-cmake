@@ -1,14 +1,17 @@
 ## Compile CMake
 
+Running cmake command
 ``` bash
 $ cmake
-
 ```
 
-Jika menjalankan CMake dari path lain misal path output (ex: bin)
+Running cmake command with specified current directory
+``` bash
+$ cmake .
+```
 
+Running cmake command from other directory. For example path output (ex: bin)
 ``` bash
 $ cd build
 $ cmake ..
-
 ```
