@@ -1,3 +1,12 @@
+
+   <sub>*Table 1: Matrix usage of PUBLIC, INTERFACE, PRIVATE*</sub>
+
+   | Question        | Answer |Answer | Answer | 
+   | :---        |     :---:      |    :---: |  :---: | 
+   | Does 'my_math' need the directory?      | Yes |No |Yes| 
+   | Does the other targets, depending upon 'my_math' are going to need this include directory?      | Yes |Yes |No| 
+   |       | **_PUBLIC_** |**_INTERFACE_** |**_PRIVATE_**| 
+   
 ## Compile CMake
 
 ``` bash

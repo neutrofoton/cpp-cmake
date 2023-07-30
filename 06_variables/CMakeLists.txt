@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 3.0.0)
+# cmake_minimum_required(VERSION 3.0.0)
+cmake_minimum_required(VERSION 3.0.0...3.9.6)
 
 message ("=========== Basic =========")
 message("hello world")
