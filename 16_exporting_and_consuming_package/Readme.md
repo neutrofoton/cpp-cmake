@@ -1,30 +1,60 @@
-# Installing and Exporting Library
+When we need to add an external project as the dependency, we will use command <code>find_package</code> in <code>CMakeLists.txt</code> to let CMake know where the header files and libraries are located, such that they can be found and linked properly later on. 
+
 ``` bash
+# will find out ABC-config.cmake di folder: /usr/local/lib/ABC
 find_package(ABC)
 ```
 
-maka akan mencari ABC-config.cmake di folder: /usr/local/lib/ABC
-to do that we need to use export keyword and specify filename (my_export)
+In order our libray can be searched and used publicly by others, we need to export the lib and config.
 
-``` bash
-install(TARGETS my_math EXPORT my_export DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/my_math)
-```
+# Steps of Exporting Library
+1. Change the <code>target_include_directories</code>
+    ``` bash
+    # target_include_directories(my_math PUBLIC include)
+    target_include_directories( my_math PUBLIC
+        $<INSTALL_INTERFACE:include>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    )
+    ```
+2. Install headers
+    ``` bash
+    # install files mention secara explisit. Hasil copy di /usr/local/include/my_math
+    install(FILES 
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/addition.h 
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/division.h  
+        DESTINATION 
+        ${CMAKE_INSTALL_PREFIX}/include/my_math
+    )
+    ```
 
-we also need to install the export file (my_export).
+3. Change the install target using an EXPORT keyword
+    ```bash
+    # install(TARGETS my_math DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/my_math)
+    install(TARGETS my_math EXPORT my_export DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/my_math)
+    ```
 
-We also need to add generator expression in the target_include_directories
-``` bash
-target_include_directories( my_math PUBLIC
-    $<INSTALL_INTERFACE:include>
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-)
-```
+4. Install the config
+    ```bash
+    # install export file and specify FILE option to my_math-config.cmake
+    install(
+        EXPORT my_export
+        FILE my_math-config.cmake
+        DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/my_math
+    )
+    ```
 
-Then build and install
+
+Finally, build and install
 ``` bash
 $ cd build
 $ cmake ..
 $ sudo make install
 ```
 
-# Consuming Library
+# Step Consuming Library
+
+1. Create find package
+    ``` bash
+    find_package(my_math)
+    ```
+2. Referencing the libraries normally in code.
