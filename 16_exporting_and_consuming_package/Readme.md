@@ -57,4 +57,26 @@ $ sudo make install
     ``` bash
     find_package(my_math)
     ```
+
+    <sub>*Table: Mode of find_package()*</sub>
+
+   | Mode           | Command                       | Will Looking for       | 
+   | :---           |     :---:                     |    :---:              |
+   | Module Mode    | find_package(ABC **MODULE**)      | *FindABC.cmake*          |
+   | Config Mode    | find_package(ABC **CONFIG**)      |*ABC-config.cmake*          |
+   
+
 2. Referencing the libraries normally in code.
+
+# General Step of Using External Library
+For example the libarary name is called <code>XYZ</code>. The Library file name is <code>libXYZ.a</code> or <code>libXYZ.so</code>
+
+1. Dowload the souce code (from github or official website)
+2. run
+    ```bash
+    cmake
+    make
+    sudo make install
+    ```
+3. Make sure a <code>XYZ-config.cmake</code> is in the installed location
+4. Use <code>find_package(XYZ)
