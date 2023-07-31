@@ -1,7 +1,8 @@
 There are 3 ways to update/modify cache variables:
-1. Edit CMakeCache.txt file => manual
-2. Use FORCE keyword => not recommended
-3. use -D flag => recommended
+1. Put cache definition in the CMakeCache.txt file. <br/>
+   We may use FORCE keyword (but it is not recommended)
+
+2. Use -D flag (recommended) in the cmake command parameter.
     ``` bash
     $ cmake -DVariableName=xxxx
     ```
