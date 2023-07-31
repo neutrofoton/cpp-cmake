@@ -1,22 +1,7 @@
-## Compile CMake
-
-``` bash
-$ cmake
-
-```
-
-Jika menjalankan CMake dari path lain misal path output (ex: bin)
-
-``` bash
-$ cd build
-$ cmake ..
-
-```
-
 ## CMAKE_GENERATOR
 CMAKE_GENERATOR tells about the build system used to compile C++ project. 
 
-By default we used Make build system. It can be found out the CMakeCache.txt file.
+By default we used Make build system. It can be found out the <code>CMakeCache.txt</code> file.
 ``` text
 //Name of generator.
 CMAKE_GENERATOR:INTERNAL=Unix Makefiles

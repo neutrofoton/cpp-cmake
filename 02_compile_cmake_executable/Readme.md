@@ -28,7 +28,7 @@ Running cmake command with specified current directory
 $ cmake .
 ```
 
-Running cmake command from other directory. For example path output (ex: bin)
+Running cmake command from other directory. For example path output (ex: build)
 ``` bash
 $ cd build
 $ cmake ..

@@ -7,20 +7,6 @@
    | Does the other targets, depending upon 'my_math' are going to need this include directory?      | Yes |Yes |No| 
    |       | **_PUBLIC_** |**_INTERFACE_** |**_PRIVATE_**| 
    
-## Compile CMake
-
-``` bash
-$ cmake
-
-```
-
-Jika menjalankan CMake dari path lain misal path output (ex: bin)
-
-``` bash
-$ cd build
-$ cmake ..
-
-```
 
 ## Running The Example
 1. Create a build directory
