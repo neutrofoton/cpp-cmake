@@ -1,4 +1,4 @@
-# Consuming External Library That Uses NON CMake Based Build Tool
+# Consuming External Library That Uses NON CMake Based Build Tool (Using Pkg-Config)
 
 The libraries that are built based on non CMake build tool usually have Pkg-Config (.pc) files.
 
@@ -31,7 +31,7 @@ We will use Pkg-Config in CMake to link the GTK3 library to the example.
 
     ```
 
-3. Open /usr/local/lib/pkgconfig/gtk+-3.0.pc with nano editor. We can see the lib and include location
+3. Open <code>/usr/local/lib/pkgconfig/gtk+-3.0.pc</code> with nano editor. We can see the lib and include location
     ```
     prefix=/usr/local/Cellar/gtk+3/3.24.29
     libdir=${prefix}/lib
@@ -48,14 +48,12 @@ We will use Pkg-Config in CMake to link the GTK3 library to the example.
 
 ## Creating CMakeLists.txt
 1. Set CMake minimum version and Project name
-2. find_package
-    will find and execute /usr/local/share/cmake/Modules/FindPkgConfig.cmake
-3. pkg_check_modules
-    will do the following task:
-        3.1. pkg_check_modules will find the .pc files
-        3.2. The arguments : 
-                a. Prefix : GTK3
-                b. The name of .pc file => gtk+-3.0 (/usr/local/lib/pkgconfig/gtk+-3.0.pc)
+2. <code>find_package</code> will find and execute <code>/usr/local/share/cmake/Modules/FindPkgConfig.cmake</code>
+3. <code>pkg_check_modules</code> will do the following task:<br/>
+        3.1. <code>pkg_check_modules</code> will find the .pc files<br/>
+        3.2. The arguments : <br/>
+                a. Prefix : **GTK3** <br/>
+                b. The name of .pc file => **gtk+-3.0** (<code>/usr/local/lib/pkgconfig/gtk+-3.0.pc</code>)
         3.3. if found, it will set variables : GTK3_INCLUDE_DIRS and GTK3_LIBRARIES
 
 
