@@ -50,9 +50,13 @@ We will use Pkg-Config in CMake to link the GTK3 library to the example.
 1. Set CMake minimum version and Project name
 2. <code>find_package</code> will find and execute <code>/usr/local/share/cmake/Modules/FindPkgConfig.cmake</code>
 3. <code>pkg_check_modules</code> will find the <code>.pc</code> files. The arguments are:
-        - Prefix : **GTK3** <br/>
-        - The name of .pc file => **gtk+-3.0** (<code>/usr/local/lib/pkgconfig/gtk+-3.0.pc</code>)<br/>
+
+    <ol>
+        <li>Prefix : <b>GTK3</b> </li>
+        <li>The name of .pc file => <b>gtk+-3.0</b> (<code>/usr/local/lib/pkgconfig/gtk+-3.0.pc</code>)</li>
+    </ol>
     <br/>
+     
    if found, it will set variables : GTK3_INCLUDE_DIRS and GTK3_LIBRARIES <br/>
 
 4. If you got any error or can not find one of package config (.pc) while building the app, just install the missing dependecy library from souce/package manager based on the OS you use. I this lab, some of dependencies of GTK+3 are.
