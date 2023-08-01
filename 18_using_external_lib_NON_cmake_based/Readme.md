@@ -49,16 +49,13 @@ We will use Pkg-Config in CMake to link the GTK3 library to the example.
 ## Creating CMakeLists.txt
 1. Set CMake minimum version and Project name
 2. <code>find_package</code> will find and execute <code>/usr/local/share/cmake/Modules/FindPkgConfig.cmake</code>
-3. <code>pkg_check_modules</code> will do the following task:<br/>
-        3.1. <code>pkg_check_modules</code> will find the .pc files<br/>
-        3.2. The arguments : <br/>
-                a. Prefix : **GTK3** <br/>
-                b. The name of .pc file => **gtk+-3.0** (<code>/usr/local/lib/pkgconfig/gtk+-3.0.pc</code>)<br/>
-        3.3. if found, it will set variables : GTK3_INCLUDE_DIRS and GTK3_LIBRARIES <br/>
+3. <code>pkg_check_modules</code> will find the <code>.pc</code> files. The arguments are:
+        - Prefix : **GTK3** <br/>
+        - The name of .pc file => **gtk+-3.0** (<code>/usr/local/lib/pkgconfig/gtk+-3.0.pc</code>)<br/>
+    <br/>
+   if found, it will set variables : GTK3_INCLUDE_DIRS and GTK3_LIBRARIES <br/>
 
-
-4. Jika mendapatkan error saat tidak menemukan salah satu file package config (.pc) mem-build, cukup install library dependencynya dari source/pakage manager sesuai dengan OS yang digunakan.
-Dalam contoh ini, berikut beberapa dependencies dari GTK+3 library.
+4. If you got any error or can not find one of package config (.pc) while building the app, just install the missing dependecy library from souce/package manager based on the OS you use. I this lab, some of dependencies of GTK+3 are.
 
     ### Dependency Libraries:
     xorg-macros -> util-macros
@@ -78,7 +75,7 @@ Dalam contoh ini, berikut beberapa dependencies dari GTK+3 library.
     https://noknow.info/it/os/install_xextproto_from_source
 
     ### Example General Installation Step:
-    ```
+    ``` bash
     $ wget https://www.x.org/archive/individual/proto/xproto-7.0.31.tar.gz
     $ tar xvfz xproto-7.0.31.tar.gz
     $ cd xproto-7.0.31
@@ -87,41 +84,59 @@ Dalam contoh ini, berikut beberapa dependencies dari GTK+3 library.
     $ make install
     ```
 
-5. Jika melakukan step pada langkah #4 karena adannya dependency yang baru diinstall, tambahkan Pkg-Config pada lokasi search Pkg-Config directory.
-    Pkg-Config search directory ada 2 cara:
-        5.1 CMake Variable : CMAKE_PREFIX_PATH
-        5.2 Environment Variable : PKG_CONFIG_PATH
+5. If you do step #4 because some dependencies just installed, please add Pkg-Config at the Pkg-Config search directory. There are 2 ways to add <code>Pkg-Config</code> search directory<br/>
+    <ol>
+        <li>CMake Variable : <code>CMAKE_PREFIX_PATH</code></li>
+        <li>Environment Variable : <code>PKG_CONFIG_PATH</code></li>
+    </ol>
+    <br/>
 
-    Jika Pkg-Config tidak pada lokasi yang tepat, maka kita dapat meng-append pada lokasi search directory diatas:
-        a. Override
-            set(CMAKE_PREFIX_PATH "home/neutro/Desktop") ==> NOT RECOMMEND
+   If <code>Pkg-Config</code> is not in the standard location, we can append it to search directory.
+    
+    #### Override
 
-        b. Append pada CMake variable
-            set(CMAKE_PREFIX_PATH 
-                        ${CMAKE_PREFIX_PATH} "home/neutro/Desktop")
-
-        c. Append pada CMake variable
-            list(APPEND CMAKE_PREFIX_PATH 
-                        "home/neutro/Desktop")
-
-        d. Append pada environment variable
-            set(ENV{PKG_CONFIG_PATH} 
-                        "${PKG_CONFIG_PATH}:"home/neutro/Desktop")
-
-        e. Menambahkan pada .bashrc, contoh:
-            # export PKG_CONFIG_PATH
-            export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
-            export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/opt/zlib/lib/pkgconfig
-            export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/xproto/7_0_31/lib/pkgconfig
-            export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/util_macros/1_19_3/share/pkgconfig
-            export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/renderproto/0_11_1/lib/pkgconfig
-            export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/kbproto/1_0_7/lib/pkgconfig
-            export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/xextproto/7_3_0/lib/pkgconfig
-
-    Lokasi path Pkg-Config akan muncul saat installasi library atau bisa di search:
+     ``` bash
+     # Not recommended
+     set(CMAKE_PREFIX_PATH "home/neutro/Desktop")
+     ```
+            
+    #### Append pada CMake variable
+    ```bash 
+    set(CMAKE_PREFIX_PATH 
+                ${CMAKE_PREFIX_PATH} "home/neutro/Desktop")
     ```
+            
+    or
+
+    ```bash 
+    list(APPEND CMAKE_PREFIX_PATH 
+                "home/neutro/Desktop")
+    ```
+
+    #### Append to environment variable
+    ```bash 
+    set(ENV{PKG_CONFIG_PATH} 
+                "${PKG_CONFIG_PATH}:"home/neutro/Desktop")
+    ```
+
+    #### Add to bash Profile .bashrc, contoh:
+    ```bash 
+    # export PKG_CONFIG_PATH
+    export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+    export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/opt/zliblib/pkgconfig
+    export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/xproto7_0_31/lib/pkgconfig
+    export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/localutil_macros/1_19_3/share/pkgconfig
+    export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/localrenderproto/0_11_1/lib/pkgconfig
+    export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/kbproto1_0_7/lib/pkgconfig
+    export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/localxextproto/7_3_0/lib/pkgconfig
+    ```
+
+    Location of path Pkg-Config will be showed at the installation of library or can be searched:
+
+    ``` bash
     $ find /usr -name "*keyword*"
     ```
+
 ## Build and Run Example
 1. navigate to build dir
    ``` bash
@@ -130,3 +145,17 @@ Dalam contoh ini, berikut beberapa dependencies dari GTK+3 library.
    $ make
    $ ./GTK_PC_app
    ```
+
+# Tips
+1. If found error
+    ``` bash
+    Could NOT find PkgConfig (missing: PKG_CONFIG_EXECUTABLE)
+    ```
+    just install pkg-config package
+    ```bash
+    brew install pkg-config
+    ```
+
+    ```bash
+    sudo apt-get install pkg-config
+    ```
