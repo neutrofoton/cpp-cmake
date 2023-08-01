@@ -53,8 +53,8 @@ We will use Pkg-Config in CMake to link the GTK3 library to the example.
         3.1. <code>pkg_check_modules</code> will find the .pc files<br/>
         3.2. The arguments : <br/>
                 a. Prefix : **GTK3** <br/>
-                b. The name of .pc file => **gtk+-3.0** (<code>/usr/local/lib/pkgconfig/gtk+-3.0.pc</code>)
-        3.3. if found, it will set variables : GTK3_INCLUDE_DIRS and GTK3_LIBRARIES
+                b. The name of .pc file => **gtk+-3.0** (<code>/usr/local/lib/pkgconfig/gtk+-3.0.pc</code>)<br/>
+        3.3. if found, it will set variables : GTK3_INCLUDE_DIRS and GTK3_LIBRARIES <br/>
 
 
 4. Jika mendapatkan error saat tidak menemukan salah satu file package config (.pc) mem-build, cukup install library dependencynya dari source/pakage manager sesuai dengan OS yang digunakan.
