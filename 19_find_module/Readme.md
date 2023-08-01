@@ -22,6 +22,7 @@ Locations:
 /home/neutro/Downloads/abc/include/abc-1.14
 ```
 
+### find_path
 Format command:
 ``` bash
 find_path(<VAR> <file-name> 
@@ -38,15 +39,31 @@ find_path(abc_INCLUDE abc.h
 ```
 
 Result:
-a. find_path 
+
 ```
 /home/neutro/Downloads/abc/include
 ```
 
-b. find_library
+### find_library
+- Library file  : <code>libabs.so</code>
+- Location      : <code>/home/neutro/Downloads/abc</code>
+
+Format Command
+```bash
+find_library(<VAR> <lib-name> <path1><path2> ...)
 ```
-/home/neutro/Downloads/abc/libabc.so
+
+Example
+```bash
+find_library(abc_LIBRARY abc HINTS /home/neutro/Downloads/abc)
 ```
+
+Result:
+```
+VAR = abc_LIBRARY = /home/neutro/Downloads/abc/libabc.so
+lib-name = abc
+```
+
     
 
 # Writing Own Find Module
