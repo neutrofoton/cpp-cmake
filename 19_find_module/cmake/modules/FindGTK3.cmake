@@ -29,6 +29,7 @@ find_path(GTK3_INCLUDE_DIR
 		NAMES gtk/gtk.h
 		PATH_SUFFIXES gtk-3.0)
 
+# $ find /usr -name glib.h
 # /usr/local/Cellar/glib/2.68.2/include/glib-2.0/glib.h
 find_path(GLIB_INCLUDE_DIR
 		NAMES glib.h
@@ -74,7 +75,7 @@ find_path(ATK_INCLUDE_DIR
 
 
 #[[
-	jika message error daro CMake/Make tidak jelas lib mana yang kurang saat linking, 
+	jika message error dari CMake/Make tidak jelas lib mana yang kurang saat linking, 
 	maka untuk mencari lib mana yg perlu di link, google dependency dari lib (GTK+3) yang kita pakai
 ]]#		
 find_library(GIO_LIBRARY
@@ -85,7 +86,7 @@ find_library(GOBJECT_LIBRARY
 
 #[[
 	untuk menvalidasi/mengecek dan memastikan semua variables diatas di set, 
-	kita dapat melakuka pengecekan dengan memanggil fungsi find_package_handle_standard_args.
+	kita dapat melakukan pengecekan dengan memanggil fungsi find_package_handle_standard_args.
 	find_package_handle_standard_args didefine dalam module FindPackageHandleStandardArgs.cmake
 	Sehingga kita perlu meng-include FindPackageHandleStandardArgs
 ]]#
