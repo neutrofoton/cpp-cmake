@@ -1,4 +1,9 @@
 #[[
+	//find the gtk3 library to get to know what actual name is. 
+	//The result libgtk-3.dylib which means the name is gtk-3s
+
+	$ find /usr -name *gtk*so
+
      ======  GTK3 ==========
     GTK3_LIBRARY and GTK3_INCLUDE_DIR variables to store the result. 
     /usr/local/Cellar/gtk+3/3.24.29/lib/libgtk-3.0.dylib
@@ -10,7 +15,16 @@
 find_library(GTK3_LIBRARY
 		NAMES gtk-3)
 
-# HINTS path is not added since the /usr/local/include is default location to search on by CMake.
+# [[
+	HINTS path is not added since the /usr/local/include is default location to search on by CMake.
+
+	//find the gtk header.
+
+	$ find /usr -name gtk.h
+
+	====== gtk.h=======
+	/usr/local/include/gtk-3.0/gtk/gtk.h
+]]#
 find_path(GTK3_INCLUDE_DIR
 		NAMES gtk/gtk.h
 		PATH_SUFFIXES gtk-3.0)
