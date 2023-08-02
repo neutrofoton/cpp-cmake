@@ -107,39 +107,38 @@ We will use Pkg-Config in CMake to link the GTK3 library to the example.
     - Environment variable : PKG_CONFIG_PATH
    It is recommended to append to the search directory instead of replace it.
 
-    ``` bash
-     # Not recommended
-     set(CMAKE_PREFIX_PATH "home/neutro/Desktop")
-     ```
-
-    ```bash 
-    # append to the CMake variable
-    set(CMAKE_PREFIX_PATH 
-                ${CMAKE_PREFIX_PATH} "home/neutro/Desktop")
-
-    list(APPEND CMAKE_PREFIX_PATH 
-                "home/neutro/Desktop")
-    ```
-    
-    ``` bash
-    # append to the environment variable
-    set(ENV{PKG_CONFIG_PATH} 
-                "${PKG_CONFIG_PATH}:"home/neutro/Desktop")
-    ```
-     
-    ```bash 
-    # export PKG_CONFIG_PATH, add to bash Profile .bashrc,
-    export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
-    export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/opt/zliblib/pkgconfig
-    export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/xproto7_0_31/lib/pkgconfig
-    export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/localutil_macros/1_19_3/share/pkgconfig
-    export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/localrenderproto/0_11_1/lib/pkgconfig
-    export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/kbproto1_0_7/lib/pkgconfig
-    export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/localxextproto/7_3_0/lib/pkgconfig
-    ```
+      ``` bash
+       # Not recommended
+       set(CMAKE_PREFIX_PATH "home/neutro/Desktop")
+       ```
+  
+      ```bash 
+      # append to the CMake variable
+      set(CMAKE_PREFIX_PATH 
+                  ${CMAKE_PREFIX_PATH} "home/neutro/Desktop")
+  
+      list(APPEND CMAKE_PREFIX_PATH 
+                  "home/neutro/Desktop")
+      ```
+      
+      ``` bash
+      # append to the environment variable
+      set(ENV{PKG_CONFIG_PATH} 
+                  "${PKG_CONFIG_PATH}:"home/neutro/Desktop")
+      ```
+       
+      ```bash 
+      # export PKG_CONFIG_PATH, add to bash Profile .bashrc,
+      export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+      export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/opt/zliblib/pkgconfig
+      export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/xproto7_0_31/lib/pkgconfig
+      export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/localutil_macros/1_19_3/share/pkgconfig
+      export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/localrenderproto/0_11_1/lib/pkgconfig
+      export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/kbproto1_0_7/lib/pkgconfig
+      export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/localxextproto/7_3_0/lib/pkgconfig
+      ```
 
 ## Build and Run Example
-1. navigate to build dir
    ``` bash
    $ cd build
    $ cmake ..
