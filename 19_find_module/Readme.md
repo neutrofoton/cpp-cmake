@@ -115,6 +115,15 @@ If we are not sure the library name is <code>libabc.so</code> or <code>libabc-1.
 | Format      | find_library(\<VAR> \<lib-name> \<path1> \<path2>...<suffix1> <suffix2>)|  |
 | Example Usage      | find_library(_abc_LIBRARY_ <br/> **NAMES** abc abc-1.7 abc-1.7.7 <br/>**HINTS** _/home/neutro/Downloads/abc/lib_  _/opt/abc_/<br/>**PATH_SUFFIXES** _abc-1.7_ _abc-1.7/extra_ _lib_ _lib/extra_)| abc_LIBRARY will be filled by full path of **libabc.so** which is found  |
 
+## find_library
+<code>find_library</code> has similar parameter as <code>find_library</code>.
+
+| Name         |  Value        | Note|
+| :--          |  :--          |:--- |
+| Library      | **libabc.so**|  |
+| Location      | /home/neutro/Downloads/abc/include <br/> /home/neutro/Downloads/abc/include/abc-1.7 <br/> /home/neutro/Downloads/abc/include/abc-1.7/extra <br/>/opt/abc <br/>/opt/abc/include <br/>/opt/abc/include/extra| |
+| Format      | find_path(\<VAR> \<file-name> \<path1> \<path2>...<suffix1> <suffix2>)|  |
+| Example Usage      | find_path(_abc_INCLUDE_ abc.H <br/>**HINTS** _/home/neutro/Downloads/abc/include_  _/opt/abc_/<br/>**PATH_SUFFIXES** _abc-1.7_ _abc-1.7/extra_ _include_ _include/extra_)| abc_LIBRARY will be filled by full path of **libabc.so** which is found  |
 
 
 ## Default Paths
@@ -125,61 +134,6 @@ The <code>find_path(...)</code>
 The <code>find_library(...)</code>
 - <code>/usr/lib</code>
 - <code>/usr/lib/x86_64-linux-gnu</code>    
-
-## Library/Header in Specific Location        
-Header: 
-```bash
-abc.h
-```
-
-Locations:
-``` bash
-/home/neutro/Downloads/abc
-/home/neutro/Downloads/abc/include
-/home/neutro/Downloads/abc/include/abc-1.14
-```
-
-### find_path
-Format command:
-``` bash
-find_path(<VAR> <file-name> 
-            <path1> <path2> ... 
-            <suffix1>...)
-```
-
-Example:
-``` bash
-find_path(abc_INCLUDE abc.h
-    HINTS /home/neutro/Downloads/abc
-    PATH_SUFFIXES include include/abc-1.14
-)
-```
-
-Result:
-
-```
-/home/neutro/Downloads/abc/include
-```
-
-### find_library
-- Library file  : <code>libabs.so</code>
-- Location      : <code>/home/neutro/Downloads/abc</code>
-
-Format Command
-```bash
-find_library(<VAR> <lib-name> <path1><path2> ...)
-```
-
-Example
-```bash
-find_library(abc_LIBRARY abc HINTS /home/neutro/Downloads/abc)
-```
-
-Result:
-```
-VAR = abc_LIBRARY = /home/neutro/Downloads/abc/libabc.so
-lib-name = abc
-```
 
     
 
