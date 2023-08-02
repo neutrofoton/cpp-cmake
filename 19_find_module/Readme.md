@@ -1,4 +1,110 @@
-# find_path and find_library Command
+# Linking Libraries Using Specified Path 
+
+Let's assume we have C++ with a description below.
+
+| Name                              |  Value        |
+| :--                               |  :--          |
+| Project                           | MyProject     |
+| Executable                        | MyApp          |
+| Dependency (External Library)     | **abc**       |
+| Header                            | /home/neutro/Downloads/**abc/include/abc.h** |
+| Library                            | /home/neutro/Downloads/**abc/lib/libabc.so**
+
+The simplest way to link the **abc** library to our app is using the full path during linking.
+
+```bash
+add_executable(MyApp main.cpp)
+
+# include header
+target_include_directories(MyApp PRIVATE /home/neutro/Downloads/abc/include)
+
+# link library
+target_link_libraries(MyApp PRIVATE /home/neutro/Downloads/abc/lib/libabc.so)
+```
+
+Let's assume we have 3 libraries
+| Headers                                        |  Libarary        |
+| :--                                            |  :--             |
+| /home/neutro/Downloads/**abc/include/abc1.h**  | /home/neutro/Downloads/**abc/lib/libabc1.so** |
+| /home/neutro/Downloads/**abc/include/abc2.h**  | /home/neutro/Downloads/**abc/lib/libabc2.so** |
+| /home/neutro/Downloads/**abc/include/abc3.h**  | /home/neutro/Downloads/**abc/lib/libabc3.so** |
+
+To link the libraries, we can use the same way as previously we do.
+```bash
+add_executable(MyApp main.cpp)
+
+# include header
+target_include_directories(MyApp PRIVATE /home/neutro/Downloads/abc/include)
+
+# link library
+target_link_libraries(MyApp 
+    PRIVATE /home/neutro/Downloads/abc/lib/libabc1.so
+            /home/neutro/Downloads/abc/lib/libabc2.so
+            /home/neutro/Downloads/abc/lib/libabc3.so
+    )
+```
+
+Another option we use <code>target_link_dicrectories</code>. The format is
+``` bash
+target_link_dicrectories(<target> <scope> <dir1> <dir2> <dir3>)
+```
+
+So, the instead of write full path for each libraries we can do the following option.
+
+```bash
+add_executable(MyApp main.cpp)
+
+# include header
+target_include_directories(MyApp PRIVATE /home/neutro/Downloads/abc/include)
+
+# link directory
+target_link_dicrectories(MyApp 
+    PRIVATE /home/neutro/Downloads/abc/lib/)
+
+# link library
+target_link_libraries(MyApp 
+    PRIVATE libabc1.so
+            libabc2.so
+            libabc3.so
+    )
+```
+
+
+
+
+
+# Linking Libraries Using find_path and find_library Command
+
+Let's assume we have deep directory structure of **abc** library as the following picture.
+<img class="center" src="../images/lib-deep-directory.png" alt="" width="100%"/>
+
+
+| Name         |  Value        | Note|
+| :--          |  :--          |:--- |
+| Library      | **libabc.so**|  |
+| Location      | /home/neutro/Downloads/**abc/lib**|  |
+| Format      | find_library(\<VAR> \<lib-name> \<path1> \<path2>)|  |
+| Example Usage      | find_library(abc_LIBRARY abc HINTS /home/neutro/Downloads/abc/lib)| abc_LIBRARY will be filled by /home/neutro/Downloads/abc/lib/**libabc.so**  |
+
+If the library in one of more than one location. The <code>find_library</code> by default will not search in sub directory.
+
+| Name         |  Value        | Note|
+| :--          |  :--          |:--- |
+| Library      | **libabc.so**|  |
+| Location      | /home/neutro/Downloads/abc/lib <br/> /home/neutro/Downloads/abc/lib/abc-1.7|  |
+| Format      | find_library(\<VAR> \<lib-name> \<path1> \<path2>)|  |
+| Example Usage      | find_library(abc_LIBRARY abc <br/>HINTS <br/>_/home/neutro/Downloads/abc/lib_ <br/>_/home/neutro/Downloads/abc/lib/abc-1.7_)| abc_LIBRARY will be filled by full path of **libabc.so** which is found  |
+
+
+Instead of list each potential directory location, we can use more better way
+| Name         |  Value        | Note|
+| :--          |  :--          |:--- |
+| Library      | **libabc.so**|  |
+| Location      | /home/neutro/Downloads/abc/lib <br/> /home/neutro/Downloads/abc/lib/abc-1.7 <br/> /home/neutro/Downloads/abc/lib/abc-1.7/extra <br/>/opt/abc <br/>/opt/abc/lib <br/>/opt/abc/lib/extra| |
+| Format      | find_library(\<VAR> \<lib-name> \<path1> \<path2>...<suffix1> <suffix2>)|  |
+| Example Usage      | find_library(abc_LIBRARY abc <br/>HINTS _/home/neutro/Downloads/abc/lib_  _/opt/abc_/<br/>PATH_SUFFIXES _abc-1.7_ _abc-1.7/extra_ _lib_ _lib/extra_)| abc_LIBRARY will be filled by full path of **libabc.so** which is found  |
+
+
 
 ## Default Paths
 The <code>find_path(...)</code>
