@@ -6,10 +6,17 @@ sudo apt install cmake
 sudo snap install cmake
 ```
 
+Install cpp compiler
+```bash
+sudo apt update && sudo apt install build-essential
+```
+
 For macos
 ``` bash
 brew install cmake
 ```
+
+
 
 ## CMake Version
 ```
