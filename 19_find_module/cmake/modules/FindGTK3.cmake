@@ -34,10 +34,16 @@ find_path(GLIB_INCLUDE_DIR
 		NAMES glib.h
 		PATH_SUFFIXES glib-2.0)
 
-# /usr/local/Cellar/glib/2.68.2/lib/glib-2.0/include/glibconfig.h
+# MacOS => /usr/local/Cellar/glib/2.68.2/lib/glib-2.0/include/glibconfig.h
+# find_path(GLIBCONFIG_INCLUDE_DIR
+# 		NAMES glibconfig.h
+# 		HINTS /usr/local/Cellar/glib/2.68.2/lib/
+# 		PATH_SUFFIXES glib-2.0/include) 
+
+# Ubuntu => /usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h
 find_path(GLIBCONFIG_INCLUDE_DIR
 		NAMES glibconfig.h
-		HINTS /usr/local/Cellar/glib/2.68.2/lib/
+		HINTS /usr/lib/x86_64-linux-gnu/
 		PATH_SUFFIXES glib-2.0/include) 
 
 # /usr/local/Cellar/pango/1.48.5/include/pango-1.0/pango/pango.h
