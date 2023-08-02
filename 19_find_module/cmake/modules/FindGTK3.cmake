@@ -15,7 +15,7 @@
 find_library(GTK3_LIBRARY
 		NAMES gtk-3)
 
-# [[
+#[[
 	HINTS path is not added since the /usr/local/include is default location to search on by CMake.
 
 	//find the gtk header.
