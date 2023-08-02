@@ -115,8 +115,8 @@ If we are not sure the library name is <code>libabc.so</code> or <code>libabc-1.
 | Format      | find_library(\<VAR> \<lib-name> \<path1> \<path2>...<suffix1> <suffix2>)|  |
 | Example Usage      | find_library(_abc_LIBRARY_ <br/> **NAMES** abc abc-1.7 abc-1.7.7 <br/>**HINTS** _/home/neutro/Downloads/abc/lib_  _/opt/abc_/<br/>**PATH_SUFFIXES** _abc-1.7_ _abc-1.7/extra_ _lib_ _lib/extra_)| abc_LIBRARY will be filled by full path of **libabc.so** which is found  |
 
-## find_library
-<code>find_library</code> has similar parameter as <code>find_library</code>.
+## find_path
+<code>find_path</code> has similar parameter as <code>find_library</code>.
 
 | Name         |  Value        | Note|
 | :--          |  :--          |:--- |
@@ -126,16 +126,16 @@ If we are not sure the library name is <code>libabc.so</code> or <code>libabc-1.
 | Example Usage      | find_path(_abc_INCLUDE_ abc.H <br/>**HINTS** _/home/neutro/Downloads/abc/include_  _/opt/abc_/<br/>**PATH_SUFFIXES** _abc-1.7_ _abc-1.7/extra_ _include_ _include/extra_)| abc_LIBRARY will be filled by full path of **libabc.so** which is found  |
 
 
-## Default Paths
-The <code>find_path(...)</code>
-- <code>/usr/include</code>
-- <code>usr/include/x86_64-linux-gnu</code>
+## Differences find_library vs find_path
+Beside searching on specified location, the <code>find_library</code> and <code>find_path</code> also have default search locations. 
 
-The <code>find_library(...)</code>
-- <code>/usr/lib</code>
-- <code>/usr/lib/x86_64-linux-gnu</code>    
 
-    
+
+| Difference                              |  find_library        | find_path|
+| :--                |  :--          | :--          | 
+| Default Location   | - <code>/usr/include</code> <br/> - <code>/usr/include/x86_64-linux-gnu</code> |- <code>/usr/lib</code> <br/> - <code>/usr/lib/x86_64-linux-gnu</code>  |
+| Output   | full path library file | full directory path |
+
 
 # Writing Own Find Module
 Assuming there is no file *.pc of GTK3
