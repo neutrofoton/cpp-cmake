@@ -44,9 +44,9 @@ target_link_libraries(MyApp
     )
 ```
 
-Another option we use <code>target_link_dicrectories</code>. The format is
+Another option we use <code>target_link_directories</code>. The format is
 ``` bash
-target_link_dicrectories(<target> <scope> <dir1> <dir2> <dir3>)
+target_link_directories(<target> <scope> <dir1> <dir2> <dir3>)
 ```
 
 So, the instead of write full path for each libraries we can do the following option.
@@ -58,7 +58,7 @@ add_executable(MyApp main.cpp)
 target_include_directories(MyApp PRIVATE /home/neutro/Downloads/abc/include)
 
 # link directory
-target_link_dicrectories(MyApp 
+target_link_directories(MyApp 
     PRIVATE /home/neutro/Downloads/abc/lib/)
 
 # link library
@@ -79,12 +79,13 @@ Let's assume we have deep directory structure of **abc** library as the followin
 <img class="center" src="../images/lib-deep-directory.png" alt="" width="100%"/>
 
 
+## find_library
 | Name         |  Value        | Note|
 | :--          |  :--          |:--- |
 | Library      | **libabc.so**|  |
 | Location      | /home/neutro/Downloads/**abc/lib**|  |
 | Format      | find_library(\<VAR> \<lib-name> \<path1> \<path2>)|  |
-| Example Usage      | find_library(abc_LIBRARY abc HINTS /home/neutro/Downloads/abc/lib)| abc_LIBRARY will be filled by /home/neutro/Downloads/abc/lib/**libabc.so**  |
+| Example Usage      | find_library(_abc_LIBRARY_ abc **HINTS** /home/neutro/Downloads/abc/lib)| abc_LIBRARY will be filled by /home/neutro/Downloads/abc/lib/**libabc.so**  |
 
 If the library in one of more than one location. The <code>find_library</code> by default will not search in sub directory.
 
@@ -93,7 +94,7 @@ If the library in one of more than one location. The <code>find_library</code> b
 | Library      | **libabc.so**|  |
 | Location      | /home/neutro/Downloads/abc/lib <br/> /home/neutro/Downloads/abc/lib/abc-1.7|  |
 | Format      | find_library(\<VAR> \<lib-name> \<path1> \<path2>)|  |
-| Example Usage      | find_library(abc_LIBRARY abc <br/>HINTS <br/>_/home/neutro/Downloads/abc/lib_ <br/>_/home/neutro/Downloads/abc/lib/abc-1.7_)| abc_LIBRARY will be filled by full path of **libabc.so** which is found  |
+| Example Usage      | find_library(_abc_LIBRARY_ abc <br/>**HINTS** <br/>_/home/neutro/Downloads/abc/lib_ <br/>_/home/neutro/Downloads/abc/lib/abc-1.7_)| abc_LIBRARY will be filled by full path of **libabc.so** which is found  |
 
 
 Instead of list each potential directory location, we can use more better way
@@ -102,7 +103,17 @@ Instead of list each potential directory location, we can use more better way
 | Library      | **libabc.so**|  |
 | Location      | /home/neutro/Downloads/abc/lib <br/> /home/neutro/Downloads/abc/lib/abc-1.7 <br/> /home/neutro/Downloads/abc/lib/abc-1.7/extra <br/>/opt/abc <br/>/opt/abc/lib <br/>/opt/abc/lib/extra| |
 | Format      | find_library(\<VAR> \<lib-name> \<path1> \<path2>...<suffix1> <suffix2>)|  |
-| Example Usage      | find_library(abc_LIBRARY abc <br/>HINTS _/home/neutro/Downloads/abc/lib_  _/opt/abc_/<br/>PATH_SUFFIXES _abc-1.7_ _abc-1.7/extra_ _lib_ _lib/extra_)| abc_LIBRARY will be filled by full path of **libabc.so** which is found  |
+| Example Usage      | find_library(_abc_LIBRARY_ abc <br/>**HINTS** _/home/neutro/Downloads/abc/lib_  _/opt/abc_/<br/>**PATH_SUFFIXES** _abc-1.7_ _abc-1.7/extra_ _lib_ _lib/extra_)| abc_LIBRARY will be filled by full path of **libabc.so** which is found  |
+
+
+If we are not sure the library name is <code>libabc.so</code> or <code>libabc-1.7.so</code> or <code>libabc-1.7.7.so</code> we can add a <code>NAME</code> option.
+
+| Name         |  Value        | Note|
+| :--          |  :--          |:--- |
+| Library      | **libabc.so**|  |
+| Location      | /home/neutro/Downloads/abc/lib <br/> /home/neutro/Downloads/abc/lib/abc-1.7 <br/> /home/neutro/Downloads/abc/lib/abc-1.7/extra <br/>/opt/abc <br/>/opt/abc/lib <br/>/opt/abc/lib/extra| |
+| Format      | find_library(\<VAR> \<lib-name> \<path1> \<path2>...<suffix1> <suffix2>)|  |
+| Example Usage      | find_library(_abc_LIBRARY_ <br/> **NAMES** abc abc-1.7 abc-1.7.7 <br/>**HINTS** _/home/neutro/Downloads/abc/lib_  _/opt/abc_/<br/>**PATH_SUFFIXES** _abc-1.7_ _abc-1.7/extra_ _lib_ _lib/extra_)| abc_LIBRARY will be filled by full path of **libabc.so** which is found  |
 
 
 
