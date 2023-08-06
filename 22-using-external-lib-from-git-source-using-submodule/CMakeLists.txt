@@ -13,6 +13,7 @@ set(MY_CUSTOM_VARIABLE neutro)
 
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
 include(AddGitSubmodule)
+# include(AddGitSubmodule.cmake)
 
 add_git_submodule(external/json)
 

@@ -43,7 +43,7 @@
 1. Pull the latest
 2. Make sure the external, build dir exist
     ```bash
-    cd 22-using-external-lib-from-git-source
+    cd 22-using-external-lib-from-git-source-using-submodule
     mkdir external
 
     # -f indicate force since we add the **/external/* in .gitignore
