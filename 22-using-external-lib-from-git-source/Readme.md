@@ -61,17 +61,3 @@
     ./app/the_app
     ```
 
-# Tips
-1. For the first time checkout sub module
-    ```bash
-    git submodule update --init --recursive
-    ```
-
-2. To update to the latest sub module
-    ```bash
-    git submodule update --recursive
-    ```
-
-    ```bash
-    git pull --recurse-submodules
-    ```
