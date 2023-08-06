@@ -39,6 +39,28 @@
 
 4. Call the lib from the main app
 
+# Build and Run
+1. Pull the latest
+2. Make sure the external, build dir exist
+    ```bash
+    cd 22-using-external-lib-from-git-source
+    mkdir external
+
+    # -f indicate force since we add the **/external/* in .gitignore
+    git submodule add -f https://github.com/nlohmann/json external/json
+
+    mkdir build
+    cd build
+
+    cmake ..
+    make
+
+    ```
+3. Run the app
+    ```bash
+    ./app/the_app
+    ```
+
 # Tips
 1. For the first time checkout sub module
     ```bash
