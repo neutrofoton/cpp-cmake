@@ -8,6 +8,12 @@ cmake .. -DCOMPILE_EXECUTABLE=ON
 ```
 
 # Generator
+
+```bash
+    cmake [<option>] -S <path-to-source> -B <path-to-build>
+```
+Assuming that a CMakeLists.txt is in the root directory, we can generate a project like the following
+
 ### Generator for GCC and Clang
 ```bash
 cd build
