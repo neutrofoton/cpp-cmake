@@ -11,7 +11,12 @@ set(LIBRARY_NAME the_lib)
 set(EXECUTABLE_NAME the_app)
 set(MY_CUSTOM_VARIABLE neutro)
 
-option(COMPILE_EXECUTABLE "Whether to compile the executable" OFF)
+set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
+include(AddGitSubmodule)
+
+add_git_submodule(external/json)
+
+option(COMPILE_EXECUTABLE "Whether to compile the executable" ON)
 
 add_subdirectory(config)
 add_subdirectory(src)

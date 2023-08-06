@@ -1,0 +1,3 @@
+[submodule "22-using-external-lib-from-git-source/external/json"]
+	path = 22-using-external-lib-from-git-source/external/json
+	url = https://github.com/nlohmann/json
