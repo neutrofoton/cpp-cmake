@@ -8,6 +8,14 @@
    |       | **_PUBLIC_** |**_INTERFACE_** |**_PRIVATE_**| 
    
 
+
+## target_include_directories
+if we want to include header in the current directory of CMakeLists.txt
+
+``` bash
+target_include_directories(LIB_NAME PUBLIC "./")
+```
+
 ## Running The Example
 1. Create a build directory
     ```bash
