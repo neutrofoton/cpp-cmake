@@ -39,7 +39,7 @@
 
     The above command will download the source git repository to the directory <code>build/_deps</code>
     
-    <img class="center" src="../images/_deps.png" alt="" width="100%"/>
+    <img class="center" src="../images/_deps.png" alt="" width="50%"/>
 
 4. On the executable CMakeLists.txt, add the following code to link the libraries to executable file.
     ```bash
