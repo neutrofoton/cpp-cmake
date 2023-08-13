@@ -1,0 +1,9 @@
+{
+    "version": 4,
+    "vendor": {
+        "conan": {}
+    },
+    "include": [
+        "/Users/neutro/workspace/source/github/cpp-cmake/24-using-external-lib-from-git-source-using-conan/build/CMakePresets.json"
+    ]
+}
