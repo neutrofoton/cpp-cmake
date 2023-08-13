@@ -11,7 +11,7 @@
 
 
 
-int main()
+int main(int argc, char **argv)
 {
     std::cout<< project_name<< ", Version= "<<project_version<< std::endl;
     std::cout<< "Custom variable = "<<project_custom_variable<<std::endl;
