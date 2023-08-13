@@ -68,6 +68,12 @@ The step installation of it is:
     make
     ```
 
+10. Run the app
+    ```bash
+    cd app
+    ./the_app --help
+    ```
+
 # Conan Documentation
 1. https://docs.conan.io/2/tutorial/consuming_packages/build_simple_cmake_project.html
 2. https://github.com/conan-io/examples2
